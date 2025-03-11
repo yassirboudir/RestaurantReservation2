@@ -1,0 +1,9 @@
+@model RestaurantAPI.Models.Reservation
+@{
+    ViewData["Title"] = "Reservation Confirmation";
+}
+<div class="reservation-confirmation">
+    <h2>Reservation Confirmed</h2>
+    <p>Your reservation for @Model.NumberOfPeople people on @Model.ReservationDate has been confirmed.</p>
+    <a href="/" class="btn">Return Home</a>
+</div>

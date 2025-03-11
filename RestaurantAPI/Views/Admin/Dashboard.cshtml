@@ -1,0 +1,48 @@
+@model IEnumerable<RestaurantAPI.Models.Reservation>
+@{
+    ViewData["Title"] = "Admin Dashboard - Pending Reservations";
+}
+<h2>Pending Reservations</h2>
+@if (!Model.Any())
+{
+    <p>No pending reservations.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Restaurant</th>
+                <th>Date</th>
+                <th>People</th>
+                <th>Address</th>
+                <th>Table</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var res in Model)
+            {
+                <tr>
+                    <td>@res.Id</td>
+                    <td>@res.User.Name</td>
+                    <td>@res.Restaurant.Name</td>
+                    <td>@res.ReservationDate</td>
+                    <td>@res.NumberOfPeople</td>
+                    <td>@res.Address</td>
+                    <td>@res.TableType</td>
+                    <td>@res.Status</td>
+                    <td>
+                        <form method="post" action="/Admin/Accept">
+                            <input type="hidden" name="id" value="@res.Id" />
+                            <button type="submit" class="btn">Accept</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

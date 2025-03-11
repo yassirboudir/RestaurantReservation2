@@ -1,0 +1,26 @@
+@model IEnumerable<RestaurantAPI.Models.Favorite>
+@{
+    ViewData["Title"] = "My Favorites";
+}
+<div class="favorites">
+    <h2>My Favorite Restaurants</h2>
+    @if (!Model.Any())
+    {
+        <p>You have no favorite restaurants yet.</p>
+    }
+    else
+    {
+        <div class="card-container">
+            @foreach (var favorite in Model)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h3>@favorite.Restaurant.Name</h3>
+                        <p>@favorite.Restaurant.Description</p>
+                        <a href="/Restaurants/Details/@favorite.Restaurant.Id" class="btn">View Details</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

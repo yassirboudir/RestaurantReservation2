@@ -1,0 +1,42 @@
+@model IEnumerable<RestaurantAPI.Models.Reservation>
+@{
+    ViewData["Title"] = "My Reservations";
+}
+<div class="profile">
+    <h2>My Reservations</h2>
+    @if (!Model.Any())
+    {
+        <p>You have no reservations yet.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Restaurant</th>
+                    <th>Date</th>
+                    <th>Number of People</th>
+                    <th>Details</th>
+                    <th>Cancel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+                {
+                    <tr>
+                        <td>@reservation.Restaurant.Name</td>
+                        <td>@reservation.ReservationDate</td>
+                        <td>@reservation.NumberOfPeople</td>
+                        <td><a href="/Reservations/Details/@reservation.Id" class="btn">View</a></td>
+                        <td>
+                            <form method="post" action="/Reservations/Cancel">
+                                <input type="hidden" name="id" value="@reservation.Id" />
+                                <button type="submit" class="btn">Cancel</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="hero-banner hero-login">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h2>Login</h2>
+        @if(ViewData["Error"] != null)
+        {
+            <p style="color:red">@ViewData["Error"]</p>
+        }
+        <form method="post" action="/Account/Login">
+            <label>Email</label>
+            <input type="email" name="Email" required />
+            <label>Password</label>
+            <input type="password" name="Password" required />
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/Account/Register">Register</a></p>
+    </div>
+</div>

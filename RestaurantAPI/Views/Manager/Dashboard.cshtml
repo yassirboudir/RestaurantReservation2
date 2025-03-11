@@ -1,0 +1,67 @@
+@model RestaurantAPI.Models.Restaurant
+@{
+    ViewData["Title"] = "Manager Dashboard";
+}
+<div class="manager-dashboard">
+    <h2>Dashboard for @Model.Name</h2>
+    <div class="dashboard-section">
+        <h3>Reservations</h3>
+        @if(Model.Reservations != null && Model.Reservations.Any())
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Number of People</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var reservation in Model.Reservations)
+                    {
+                        <tr>
+                            <td>@reservation.User.Name</td>
+                            <td>@reservation.ReservationDate</td>
+                            <td>@reservation.NumberOfPeople</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No reservations yet.</p>
+        }
+    </div>
+    <div class="dashboard-section">
+        <h3>Reviews</h3>
+        @if(Model.Reviews != null && Model.Reviews.Any())
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var review in Model.Reviews)
+                    {
+                        <tr>
+                            <td>@review.User.Name</td>
+                            <td>@review.Rating/5</td>
+                            <td>@review.Comment</td>
+                            <td>@review.CreatedAt.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No reviews yet.</p>
+        }
+    </div>
+</div>

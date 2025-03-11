@@ -1,0 +1,154 @@
+@model RestaurantAPI.Models.Restaurant
+@using Microsoft.AspNetCore.Http
+@using RestaurantAPI.Models
+@{
+    ViewData["Title"] = "Restaurant Details";
+    var images = ViewBag.Images as List<RestaurantImage>; // if you have images
+    bool userLoggedIn = Context.Session.GetInt32("UserId") != null;
+
+    // Grab the average rating & total from ViewBag
+    double averageOutOfTen = ViewBag.AverageOutOfTen != null ? (double)ViewBag.AverageOutOfTen : 0.0;
+    int totalReviews = ViewBag.TotalReviews != null ? (int)ViewBag.TotalReviews : 0;
+
+    // Determine a label based on averageOutOfTen
+    string ratingLabel = "Good";
+    if (averageOutOfTen >= 9) {
+        ratingLabel = "Excellent";
+    } else if (averageOutOfTen >= 7) {
+        ratingLabel = "Very Good";
+    } else if (averageOutOfTen >= 5) {
+        ratingLabel = "Good";
+    } else {
+        ratingLabel = "Fair";
+    }
+}
+<div class="details-container">
+    <div class="left-section">
+        <h2>@Model.Name</h2>
+        <p>@Model.Description</p>
+        <p>@Model.Address</p>
+        <p>@Model.Phone</p>
+        <p><a href="@Model.Website" target="_blank">Visit Website</a></p>
+
+        @if(userLoggedIn)
+        {
+            if(ViewBag.IsFavorite != null && (bool)ViewBag.IsFavorite)
+            {
+                <form method="post" action="/Favorite/Remove">
+                    <input type="hidden" name="restaurantId" value="@Model.Id" />
+                    <button type="submit" class="btn">Remove from Favorites</button>
+                </form>
+            }
+            else
+            {
+                <form method="post" action="/Favorite/Add">
+                    <input type="hidden" name="restaurantId" value="@Model.Id" />
+                    <button type="submit" class="btn">Add to Favorites</button>
+                </form>
+            }
+        }
+
+        <hr />
+
+        <h3>About</h3>
+        <p>Additional info about this restaurant...</p>
+
+        <hr />
+
+        <h3>Reviews</h3>
+
+@if(Model.Reviews != null && Model.Reviews.Any())
+{
+    @* Example: If you want to compute rating out of 10, do (review.Rating * 2). 
+       Or if your rating is already out of 10, just show review.Rating. *@
+
+    @foreach(var review in Model.Reviews.OrderByDescending(r => r.CreatedAt))
+    {
+        <div class="review-item">
+            <div class="review-left">
+                <div class="review-user-info">
+                    <img src="~/images/user-icon.png" alt="User Icon" class="user-icon-sm" />
+                    <div>
+                        <div class="review-user-name">
+                            @review.User.Name
+                            <span class="review-count">· 1 review</span>
+                            @* Hard-coded "1 review" or dynamically show the user's total review count if you have it *@
+                        </div>
+                        <div class="review-date">
+                            @review.CreatedAt.ToString("MMMM d, yyyy")
+                        </div>
+                    </div>
+                </div>
+                <div class="review-text">
+                    @review.Comment
+                </div>
+            </div>
+            <div class="review-right">
+                @(review.Rating * 2)/10
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No reviews yet.</p>
+}
+
+
+        <!-- List of Reviews -->
+        @if(Model.Reviews != null && Model.Reviews.Any())
+        {
+            foreach(var review in Model.Reviews.OrderByDescending(r => r.CreatedAt))
+            {
+                <div class="review-item">
+                    <div class="review-user">
+                        <img src="~/images/user-icon.png" alt="User Icon" class="user-icon" />
+                        <div class="review-user-info">
+                            <strong>@review.User.Name</strong>
+                            <div class="review-date">@review.CreatedAt.ToString("MMMM d, yyyy")</div>
+                        </div>
+                        <div class="review-score">
+                            <!-- If you want to display numeric (like 8/10) -->
+                            @(review.Rating * 2) /10
+                        </div>
+                    </div>
+                    <p class="review-comment">@review.Comment</p>
+                </div>
+            }
+        }
+
+        @if(userLoggedIn)
+        {
+            <h4>Add Your Review</h4>
+            <form method="post" action="/ReviewMvc/Create" class="review-form">
+                <input type="hidden" name="restaurantId" value="@Model.Id" />
+                <div class="form-group">
+                    <label>Rating</label>
+                    <input type="number" name="rating" min="1" max="5" required />
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    <textarea name="comment" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Review</button>
+            </form>
+        }
+
+        <hr />
+
+        @if(userLoggedIn)
+        {
+            <a class="btn" href="/Reservations/MakeReservation?restaurantId=@Model.Id">
+                Make a Reservation
+            </a>
+        }
+    </div>
+
+    <!-- RIGHT COLUMN: If you have a carousel or black box, put it here -->
+    <div class="right-section">
+        <!-- Example placeholder for a black box or a carousel -->
+        <div class="black-box">
+            <p style="color:#fff;">Placeholder for images or carousel</p>
+        </div>
+    </div>
+</div>

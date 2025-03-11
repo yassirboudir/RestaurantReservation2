@@ -1,0 +1,37 @@
+@model IEnumerable<RestaurantAPI.Models.Restaurant>
+@{
+    ViewData["Title"] = "Restaurants";
+}
+<div class="restaurant-list">
+    <h2>Restaurants</h2>
+    <div class="card-container">
+        @foreach (var restaurant in Model)
+        {
+            var imageFile = "";
+            if(restaurant.Name == "Tacos square")
+            {
+                imageFile = "tacos1.jpg";
+            }
+            else if(restaurant.Name == "Le maitre chicken")
+            {
+                imageFile = "maitre1.jpg";
+            }
+            else if(restaurant.Name == "Pizza hut")
+            {
+                imageFile = "pizza1.jpg";
+            }
+            else
+            {
+                imageFile = "default.jpg";
+            }
+            <div class="card">
+                <div class="card-img" style="background-image: url('/images/@imageFile');"></div>
+                <div class="card-body">
+                    <h3>@restaurant.Name</h3>
+                    <p>@restaurant.Description</p>
+                    <a href="/Restaurants/Details/@restaurant.Id" class="btn">View Details</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

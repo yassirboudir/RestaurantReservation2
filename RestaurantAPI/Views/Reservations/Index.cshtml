@@ -1,0 +1,21 @@
+@model IEnumerable<RestaurantAPI.Models.Restaurant>
+
+@{
+    ViewData["Title"] = "Reserve at Our Restaurants";
+}
+
+<div class="reservation-list-container">
+    <h2>All Restaurants</h2>
+    <div class="reservation-list">
+        @foreach (var r in Model)
+        {
+            <div class="restaurant-item">
+                <h3>@r.Name</h3>
+                <p>@r.Description</p>
+                <p>@r.Address</p>
+                <p>@r.Phone</p>
+                <a class="btn" href="/Reservations/MakeReservation?restaurantId=@r.Id">Make a Reserve</a>
+            </div>
+        }
+    </div>
+</div>
