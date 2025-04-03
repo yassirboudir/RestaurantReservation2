@@ -3,26 +3,12 @@
 @using RestaurantAPI.Models
 @{
     ViewData["Title"] = "Restaurant Details";
-    var images = ViewBag.Images as List<RestaurantImage>; // if you have images
+    // If you load images from ViewBag
+    var images = ViewBag.Images as List<RestaurantImage>;
     bool userLoggedIn = Context.Session.GetInt32("UserId") != null;
-
-    // Grab the average rating & total from ViewBag
-    double averageOutOfTen = ViewBag.AverageOutOfTen != null ? (double)ViewBag.AverageOutOfTen : 0.0;
-    int totalReviews = ViewBag.TotalReviews != null ? (int)ViewBag.TotalReviews : 0;
-
-    // Determine a label based on averageOutOfTen
-    string ratingLabel = "Good";
-    if (averageOutOfTen >= 9) {
-        ratingLabel = "Excellent";
-    } else if (averageOutOfTen >= 7) {
-        ratingLabel = "Very Good";
-    } else if (averageOutOfTen >= 5) {
-        ratingLabel = "Good";
-    } else {
-        ratingLabel = "Fair";
-    }
 }
 <div class="details-container">
+    <!-- LEFT COLUMN -->
     <div class="left-section">
         <h2>@Model.Name</h2>
         <p>@Model.Description</p>
@@ -51,70 +37,37 @@
         <hr />
 
         <h3>About</h3>
-        <p>Additional info about this restaurant...</p>
+        <p>Tacos square is the best tacos in kenitra</p>
 
         <hr />
 
         <h3>Reviews</h3>
-
-@if(Model.Reviews != null && Model.Reviews.Any())
-{
-    @* Example: If you want to compute rating out of 10, do (review.Rating * 2). 
-       Or if your rating is already out of 10, just show review.Rating. *@
-
-    @foreach(var review in Model.Reviews.OrderByDescending(r => r.CreatedAt))
-    {
-        <div class="review-item">
-            <div class="review-left">
-                <div class="review-user-info">
-                    <img src="~/images/user-icon.png" alt="User Icon" class="user-icon-sm" />
-                    <div>
-                        <div class="review-user-name">
-                            @review.User.Name
-                            <span class="review-count">· 1 review</span>
-                            @* Hard-coded "1 review" or dynamically show the user's total review count if you have it *@
-                        </div>
-                        <div class="review-date">
-                            @review.CreatedAt.ToString("MMMM d, yyyy")
-                        </div>
-                    </div>
-                </div>
-                <div class="review-text">
-                    @review.Comment
-                </div>
-            </div>
-            <div class="review-right">
-                @(review.Rating * 2)/10
-            </div>
-        </div>
-    }
-}
-else
-{
-    <p>No reviews yet.</p>
-}
-
-
-        <!-- List of Reviews -->
         @if(Model.Reviews != null && Model.Reviews.Any())
         {
-            foreach(var review in Model.Reviews.OrderByDescending(r => r.CreatedAt))
+            foreach(var review in Model.Reviews)
             {
-                <div class="review-item">
-                    <div class="review-user">
-                        <img src="~/images/user-icon.png" alt="User Icon" class="user-icon" />
-                        <div class="review-user-info">
-                            <strong>@review.User.Name</strong>
-                            <div class="review-date">@review.CreatedAt.ToString("MMMM d, yyyy")</div>
-                        </div>
-                        <div class="review-score">
-                            <!-- If you want to display numeric (like 8/10) -->
-                            @(review.Rating * 2) /10
-                        </div>
+                <div class="review-box">
+                    <div class="review-header">
+                        <strong>@review.User.Name</strong>
+                        <span class="review-rating">
+                            @for (int i = 0; i < review.Rating; i++)
+                            {
+                                <span class="star">★</span>
+                            }
+                            @for (int i = review.Rating; i < 5; i++)
+                            {
+                                <span class="star empty">☆</span>
+                            }
+                        </span>
                     </div>
-                    <p class="review-comment">@review.Comment</p>
+                    <p>@review.Comment</p>
+                    <small>@review.CreatedAt.ToShortDateString()</small>
                 </div>
             }
+        }
+        else
+        {
+            <p>No reviews yet.</p>
         }
 
         @if(userLoggedIn)
@@ -144,11 +97,26 @@ else
         }
     </div>
 
-    <!-- RIGHT COLUMN: If you have a carousel or black box, put it here -->
-    <div class="right-section">
-        <!-- Example placeholder for a black box or a carousel -->
-        <div class="black-box">
-            <p style="color:#fff;">Placeholder for images or carousel</p>
+<!-- RIGHT COLUMN: Show images if any -->
+<div class="right-section">
+    @if(images != null && images.Any())
+    {
+        <div class="black-box image-gallery">
+            @foreach (var img in images)
+            {
+                <img src="@($"/images/{img.FileName}")" alt="Restaurant Image" />
+            }
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="black-box">
+            <p style="color:#fff;">No images available.</p>
+        </div>
+    }
 </div>
+
+
+@section Scripts {
+    <!-- If you had a carousel script, place it here or remove it if not needed -->
+}

@@ -10,10 +10,10 @@ namespace RestaurantAPI.Models
         [Required]
         public int RestaurantId { get; set; }
         [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
         [Required]
         public int UserId { get; set; }
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User User { get; set; } = null!;
     }
 }

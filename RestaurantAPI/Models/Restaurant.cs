@@ -8,16 +8,19 @@ namespace RestaurantAPI.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public string Website { get; set; }
-        // Now this filename will be found in wwwroot/images
-        public string ImageUrl { get; set; }
-        
-        public ICollection<Reservation> Reservations { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        public ICollection<RestaurantImage> RestaurantImages { get; set; }
+        public string Name { get; set; } = string.Empty;
+        [Required]
+        public string Description { get; set; } = string.Empty;
+        [Required]
+        public string Address { get; set; } = string.Empty;
+        [Required]
+        public string Phone { get; set; } = string.Empty;
+        [Required]
+        public string Website { get; set; } = string.Empty;
+        [Required]
+        public string ImageUrl { get; set; } = string.Empty;
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ICollection<RestaurantImage> RestaurantImages { get; set; } = new List<RestaurantImage>();
     }
 }

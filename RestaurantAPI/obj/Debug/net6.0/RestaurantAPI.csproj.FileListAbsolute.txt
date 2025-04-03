@@ -47,3 +47,4 @@ F:\RestaurantReservation2\RestaurantAPI\obj\Debug\net6.0\refint\RestaurantAPI.dl
 F:\RestaurantReservation2\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.pdb
 F:\RestaurantReservation2\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.genruntimeconfig.cache
 F:\RestaurantReservation2\RestaurantAPI\obj\Debug\net6.0\ref\RestaurantAPI.dll
+F:\RestaurantReservation2\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.sourcelink.json

@@ -20,7 +20,7 @@ else
                 <th>Address</th>
                 <th>Table</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,15 +30,19 @@ else
                     <td>@res.Id</td>
                     <td>@res.User.Name</td>
                     <td>@res.Restaurant.Name</td>
-                    <td>@res.ReservationDate</td>
+                    <td>@res.ReservationDate.ToString("g")</td>
                     <td>@res.NumberOfPeople</td>
                     <td>@res.Address</td>
                     <td>@res.TableType</td>
                     <td>@res.Status</td>
                     <td>
-                        <form method="post" action="/Admin/Accept">
+                        <form method="post" action="/Admin/Accept" style="display:inline;">
                             <input type="hidden" name="id" value="@res.Id" />
                             <button type="submit" class="btn">Accept</button>
+                        </form>
+                        <form method="post" action="/Admin/Decline" style="display:inline; margin-left: 5px;">
+                            <input type="hidden" name="id" value="@res.Id" />
+                            <button type="submit" class="btn">Decline</button>
                         </form>
                     </td>
                 </tr>

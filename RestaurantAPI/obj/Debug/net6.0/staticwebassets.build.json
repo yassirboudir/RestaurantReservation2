@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KS8HjMiYetzqmZYYchS2WMQv/UBChwQV3ygbgHMxL9k=",
+  "Hash": "lfNPoyc/2R0y45tipM84Qd8inmQXyAgBDnYPThygo8E=",
   "Source": "RestaurantAPI",
   "BasePath": "_content/RestaurantAPI",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4v4f8cdeyd",
-      "Integrity": "YM54xaQuOroIQZ2I3ymDlFi4FkxKBPurF3QEF8sXkyI=",
+      "Fingerprint": "0ytsnvtnyw",
+      "Integrity": "mGm6GbBGn1gdmSETNwZKKMICyWmETM1lh82ErGkPi/0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1573,7 +1573,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.4v4f8cdeyd.css",
+      "Route": "css/site.0ytsnvtnyw.css",
       "AssetFile": "F:\\RestaurantReservation2\\RestaurantAPI\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1583,7 +1583,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "23977"
+          "Value": "25579"
         },
         {
           "Name": "Content-Type",
@@ -1591,11 +1591,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YM54xaQuOroIQZ2I3ymDlFi4FkxKBPurF3QEF8sXkyI=\""
+          "Value": "\"mGm6GbBGn1gdmSETNwZKKMICyWmETM1lh82ErGkPi/0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 22:08:25 GMT"
+          "Value": "Thu, 03 Apr 2025 00:34:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1605,7 +1605,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4v4f8cdeyd"
+          "Value": "0ytsnvtnyw"
         },
         {
           "Name": "label",
@@ -1613,7 +1613,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-YM54xaQuOroIQZ2I3ymDlFi4FkxKBPurF3QEF8sXkyI="
+          "Value": "sha256-mGm6GbBGn1gdmSETNwZKKMICyWmETM1lh82ErGkPi/0="
         }
       ]
     },
@@ -1628,7 +1628,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "23977"
+          "Value": "25579"
         },
         {
           "Name": "Content-Type",
@@ -1636,11 +1636,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YM54xaQuOroIQZ2I3ymDlFi4FkxKBPurF3QEF8sXkyI=\""
+          "Value": "\"mGm6GbBGn1gdmSETNwZKKMICyWmETM1lh82ErGkPi/0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 22:08:25 GMT"
+          "Value": "Thu, 03 Apr 2025 00:34:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1650,7 +1650,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YM54xaQuOroIQZ2I3ymDlFi4FkxKBPurF3QEF8sXkyI="
+          "Value": "sha256-mGm6GbBGn1gdmSETNwZKKMICyWmETM1lh82ErGkPi/0="
         }
       ]
     },

@@ -7,13 +7,10 @@ namespace RestaurantAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-        [Required]
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

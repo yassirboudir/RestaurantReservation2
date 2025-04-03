@@ -26,7 +26,7 @@ namespace RestaurantAPI.Controllers
             return View(pendingReservations);
         }
 
-        // Accept a reservation (update its status to "Accepted")
+        // Accept a reservation (set status to "Accepted")
         [HttpPost]
         public async Task<IActionResult> Accept(int id)
         {
@@ -34,6 +34,19 @@ namespace RestaurantAPI.Controllers
             if (reservation != null)
             {
                 reservation.Status = "Accepted";
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Dashboard");
+        }
+
+        // Decline a reservation (set status to "Declined")
+        [HttpPost]
+        public async Task<IActionResult> Decline(int id)
+        {
+            var reservation = await _context.Reservations.FindAsync(id);
+            if (reservation != null)
+            {
+                reservation.Status = "Declined";
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("Dashboard");

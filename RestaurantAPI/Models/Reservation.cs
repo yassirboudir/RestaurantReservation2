@@ -8,21 +8,31 @@ namespace RestaurantAPI.Models
     {
         [Key]
         public int Id { get; set; }
+        
         [Required]
         public int RestaurantId { get; set; }
         [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
+        
         [Required]
         public int UserId { get; set; }
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User User { get; set; } = null!;
+        
         [Required]
         public DateTime ReservationDate { get; set; }
+        
         [Required]
         public int NumberOfPeople { get; set; }
-        public string Address { get; set; }
-        public string TableType { get; set; }
-        // NEW FIELD: tracks reservation status (e.g., Pending, Accepted, Rejected)
+        
+        [Required]
+        public string Address { get; set; } = string.Empty;
+        
+        [Required]
+        public string TableType { get; set; } = string.Empty;
+        
+        // New property for reservation status
+        [Required]
         public string Status { get; set; } = "Pending";
     }
 }

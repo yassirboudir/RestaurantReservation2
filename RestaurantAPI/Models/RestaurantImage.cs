@@ -8,10 +8,10 @@ namespace RestaurantAPI.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string FileName { get; set; }
+        public string FileName { get; set; } = string.Empty;
         [Required]
         public int RestaurantId { get; set; }
         [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
     }
 }

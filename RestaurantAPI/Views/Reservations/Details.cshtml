@@ -1,0 +1,14 @@
+@model RestaurantAPI.Models.Reservation
+@{
+    ViewData["Title"] = "Reservation Details";
+}
+<div class="reservation-details">
+    <h2>Reservation Details</h2>
+    <p><strong>Reservation ID:</strong> @Model.Id</p>
+    <p><strong>Restaurant:</strong> @Model.Restaurant.Name</p>
+    <p><strong>Date/Time:</strong> @Model.ReservationDate.ToString("g")</p>
+    <p><strong>Number of People:</strong> @Model.NumberOfPeople</p>
+    <p><strong>Status:</strong> @Model.Status</p>
+    <p><strong>User:</strong> @Model.User.Name (@Model.User.Email)</p>
+    <!-- Include additional fields like Address or TableType if needed -->
+</div>
